@@ -1,0 +1,10 @@
+file_format: "1"
+id: pipi_gherkin
+name: PiPi Gherkin
+type: shield
+url: https://www.40percent.club/2021/02/pipi-gherkin.html
+requires: [rpi_pico]
+exposes: []
+features:
+  - keys
+siblings:

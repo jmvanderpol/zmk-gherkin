@@ -1,0 +1,7 @@
+if SHIELD_PIPI_GHERKIN
+
+# Name must be less than 16 characters long!
+config ZMK_KEYBOARD_NAME
+    default "PiPi Gherkin"
+
+endif
