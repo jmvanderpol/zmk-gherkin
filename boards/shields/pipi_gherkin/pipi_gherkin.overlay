@@ -1,6 +1,6 @@
 #include <dt-bindings/zmk/matrix_transform.h>
 
-/ }
+/ {
   kscan0: kscan {
     compatible = "zmk,kscan-gpio-matrix";
     wakeup-source;
