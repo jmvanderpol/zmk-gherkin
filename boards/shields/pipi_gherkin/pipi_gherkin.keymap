@@ -18,49 +18,49 @@
     td_q_esc: tap_dance_q_escape {
       compatible = "zmk,behavior-tap-dance";
       #binding-cells = <0>;
-      tapping-term-ms = <100>;
+      tapping-term-ms = <220>;
       bindings = <&kp Q>, <&kp ESC>;
     };
     td_p_minus: tap_dance_p_minus {
       compatible = "zmk,behavior-tap-dance";
       #binding-cells = <0>;
-      tapping-term-ms = <100>;
+      tapping-term-ms = <220>;
       bindings = <&kp P>, <&kp MINUS>;
     };
     td_a_tab: tap_dance_a_tab {
       compatible = "zmk,behavior-tap-dance";
       #binding-cells = <0>;
-      tapping-term-ms = <100>;
+      tapping-term-ms = <220>;
       bindings = <&kp A>, <&kp TAB>;
     };
     td_b_spc: tap_dance_b_space {
       compatible = "zmk,behavior-tap-dance";
       #binding-cells = <0>;
-      tapping-term-ms = <100>;
+      tapping-term-ms = <220>;
       bindings = <&kp B>, <&kp SPACE>;
     };
     td_n_bspc: tap_dance_n_backspace {
       compatible = "zmk,behavior-tap-dance";
       #binding-cells = <0>;
-      tapping-term-ms = <100>;
+      tapping-term-ms = <220>;
       bindings = <&kp N>, <&kp BSPC>;
     };
     td_lt_rse_ent_semi: tap_dance_raise_enter_semicolon {
       compatible = "zmk,behavior-tap-dance";
       #binding-cells = <0>;
-      tapping-term-ms = <100>;
+      tapping-term-ms = <220>;
       bindings = <&lt 2 ENTER>, <&kp SEMI>, <&kp SQT>;
     };
     td_cm_lbkt: tap_dance_comma_left_bracket {
       compatible = "zmk,behavior-tap-dance";
       #binding-cells = <0>;
-      tapping-term-ms = <100>;
+      tapping-term-ms = <220>;
       bindings = <&kp COMMA>, <&kp LBKT>;
     };
     td_dot_rbkt: tap_dance_dot_right_bracket {
       compatible = "zmk,behavior-tap-dance";
       #binding-cells = <0>;
-      tapping-term-ms = <100>;
+      tapping-term-ms = <220>;
       bindings = <&kp DOT>, <&kp RBKT>;
     };
   };
