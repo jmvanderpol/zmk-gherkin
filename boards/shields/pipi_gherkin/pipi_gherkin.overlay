@@ -1,25 +1,10 @@
 #include <dt-bindings/zmk/matrix_transform.h>
+#include <dt-bindings/pinctrl/rpi-pico-rp2040-pinctrl.h>
 
 / {
-  kscan0: kscan {
-    compatible = "zmk,kscan-gpio-matrix";
-    wakeup-source;
-    diode-direction = "col2row";
-    col-gpios
-      = <&rpi_pico 2 GPIO_ACTIVE_HIGH>
-      , <&rpi_pico 3 GPIO_ACTIVE_HIGH>
-      , <&rpi_pico 4 GPIO_ACTIVE_HIGH>
-      , <&rpi_pico 5 GPIO_ACTIVE_HIGH>
-      , <&rpi_pico 6 GPIO_ACTIVE_HIGH>
-      , <&rpi_pico 7 GPIO_ACTIVE_HIGH>
-      ;
-    row-gpios
-      = <&rpi_pico 8 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
-      , <&rpi_pico 9 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
-      , <&rpi_pico 10 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
-      , <&rpi_pico 11 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
-      , <&rpi_pico 12 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
-      ;
+  chosen {
+    zmk,kscan = &kscan0;
+    zmk,physical-layout = &physical_layout0;
   };
   default_transform: keymap_transform0 {
     compatible = "zmk,matrix-transform";
@@ -31,12 +16,31 @@
       RC(3,2) RC(3,3) RC(3,4) RC(3,5) RC(4,0) RC(4,1) RC(4,2) RC(4,3) RC(4,4) RC(4,5)
     >;
   };
+  kscan0: kscan {
+    compatible = "zmk,kscan-gpio-matrix";
+    wakeup-source;
+    diode-direction = "col2row";
+    col-gpios
+      = <&gpio0 2 GPIO_ACTIVE_HIGH>
+      , <&gpio0 3 GPIO_ACTIVE_HIGH>
+      , <&gpio0 4 GPIO_ACTIVE_HIGH>
+      , <&gpio0 5 GPIO_ACTIVE_HIGH>
+      , <&gpio0 6 GPIO_ACTIVE_HIGH>
+      , <&gpio0 7 GPIO_ACTIVE_HIGH>
+      ;
+    row-gpios
+      = <&gpio0 8 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+      , <&gpio0 9 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+      , <&gpio0 10 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+      , <&gpio0 11 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+      , <&gpio0 12 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+      ;
+  };
   physical_layout0: physical_layout_0 {
     compatible = "zmk,physical-layout";
     display-name = "Default Layout";
+    kscan = <&kscan0>;
+    transform = <&default_transform>;
   };
-  chosen {
-    zmk,kscan = &kscan0;
-    zmk,physical-layout = &physical_layout0;
-  };
+
 };
