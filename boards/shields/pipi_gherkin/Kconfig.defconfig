@@ -5,3 +5,7 @@ config ZMK_KEYBOARD_NAME
     default "PiPi Gherkin"
 
 endif
+
+config I2C
+    default y
+

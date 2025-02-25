@@ -9,8 +9,30 @@
 #define LOWER 1
 #define RAISE 2
 
+/* Behavior Settings */
+
+&sl { release-after-ms = <250>; };
+
+&lt {
+    tapping-term-ms = <240>;
+    quick-tap-ms = <150>;
+    require-prior-idle-ms = <10>;
+    flavor = "tap-preferred";
+};
+
+&mt {
+    tapping-term-ms = <250>;
+    require-prior-idle-ms = <250>;
+    flavor = "tap-preferred";
+};
+
 &soft_off {
-  hold-time-ms = <1000>;
+    hold-time-ms = <5000>; // Only turn off it the key is held for 5 seconds or longer.
+};
+
+&sk {
+    quick-release;
+    release-after-ms = <600>;
 };
 
 / {
@@ -18,49 +40,43 @@
     td_q_esc: tap_dance_q_escape {
       compatible = "zmk,behavior-tap-dance";
       #binding-cells = <0>;
-      tapping-term-ms = <220>;
       bindings = <&kp Q>, <&kp ESC>;
     };
     td_p_minus: tap_dance_p_minus {
       compatible = "zmk,behavior-tap-dance";
       #binding-cells = <0>;
-      tapping-term-ms = <220>;
       bindings = <&kp P>, <&kp MINUS>;
     };
     td_a_tab: tap_dance_a_tab {
       compatible = "zmk,behavior-tap-dance";
       #binding-cells = <0>;
-      tapping-term-ms = <220>;
       bindings = <&kp A>, <&kp TAB>;
     };
     td_b_spc: tap_dance_b_space {
       compatible = "zmk,behavior-tap-dance";
       #binding-cells = <0>;
-      tapping-term-ms = <220>;
+      tapping-term-ms = <300>;
       bindings = <&kp B>, <&kp SPACE>;
     };
     td_n_bspc: tap_dance_n_backspace {
       compatible = "zmk,behavior-tap-dance";
       #binding-cells = <0>;
-      tapping-term-ms = <220>;
+      tapping-term-ms = <300>;
       bindings = <&kp N>, <&kp BSPC>;
     };
     td_lt_rse_ent_semi: tap_dance_raise_enter_semicolon {
       compatible = "zmk,behavior-tap-dance";
       #binding-cells = <0>;
-      tapping-term-ms = <220>;
-      bindings = <&lt 2 ENTER>, <&kp SEMI>, <&kp SQT>;
+      bindings = <&lt RAISE ENTER>, <&kp SEMI>, <&kp SQT>;
     };
     td_cm_lbkt: tap_dance_comma_left_bracket {
       compatible = "zmk,behavior-tap-dance";
       #binding-cells = <0>;
-      tapping-term-ms = <220>;
       bindings = <&kp COMMA>, <&kp LBKT>;
     };
     td_dot_rbkt: tap_dance_dot_right_bracket {
       compatible = "zmk,behavior-tap-dance";
       #binding-cells = <0>;
-      tapping-term-ms = <220>;
       bindings = <&kp DOT>, <&kp RBKT>;
     };
   };
@@ -77,7 +93,7 @@
       bindings = <
         &td_q_esc     &kp W       &kp E       &kp R       &kp T      &kp Y  &kp U  &kp I      &kp O    &td_p_minus
         &td_a_tab     &kp S       &kp D       &kp F       &kp G      &kp H  &kp J  &kp K      &kp L    &td_lt_rse_ent_semi
-        &mt LSHIFT Z  &lt LCTL X  &lt LALT C  &lt LGUI V  &td_b_spc  &td_n_bspc  &kp M  &td_cm_lbkt  &td_dot_rbkt  &lt 1 SLASH
+        &mt LSHIFT Z  &mt LCTL X  &mt LALT C  &mt LGUI V  &td_b_spc  &td_n_bspc  &kp M  &td_cm_lbkt  &td_dot_rbkt  &lt LOWER SLASH
       >;
     };
     lower { // LOWER
@@ -96,14 +112,14 @@
     raise { // RAISE
       display-name = "Hardware";
       // -------------------------------------------------------------
-      // | SOFT_OFF | RGB_EFF | RGB_BRI | RGB_HUI | RGB_SAI | RGB_SPI |  U  |  =   |  \  |  `  |
-      // | RGB_TOG  | RGB_EFD | RGB_BRD | RGB_HUD | RGB_SAD | RGB_SPD |  J  | HOME | END |  ;  |
-      // | BT_CLR   |   BT1   |   BT2   |   BT3   |   BT4   |   BT5   |  M  |  ,   |  .  |  /  |
+      // |    `     | RGB_EFF | RGB_BRI | RGB_HUI | RGB_SAI | RGB_SPI |  U  |  =   |  \  | SOFT_OFF |
+      // | RGB_TOG  | RGB_EFD | RGB_BRD | RGB_HUD | RGB_SAD | RGB_SPD |  J  | HOME | END |     ;   |
+      // | BT_CLR   |   BT1   |   BT2   |   BT3   |   BT4   |   BT5   |  M  |  ,   |  .  |     /    |
       // -------------------------------------------------------------
       // &kp LCTRL  &kp LALT  &kp LGUI  &mo FNC  &kp SPACE  &mo LWR  &mo RSE
       // &kp ESC  &kp BSPC  &kp TAB &kp SQT  &kp SEMI  &kp LSHFT  &kp UP  &kp LEFT  &kp DOWN  &kp RIGHT
       bindings = <
-        &soft_off       &rgb_ug RGB_EFF  &rgb_ug RGB_BRI  &rgb_ug RGB_HUI  &rgb_ug RGB_SAI  &rgb_ug RGB_SPI  &trans  &kp EQUAL  &kp BSLH  &kp GRAVE
+        &kp GRAVE       &rgb_ug RGB_EFF  &rgb_ug RGB_BRI  &rgb_ug RGB_HUI  &rgb_ug RGB_SAI  &rgb_ug RGB_SPI  &trans  &kp EQUAL  &kp BSLH  &soft_off
         &rgb_ug RGB_TOG &rgb_ug RGB_EFR  &rgb_ug RGB_BRD  &rgb_ug RGB_HUD  &rgb_ug RGB_SAD  &rgb_ug RGB_SPD  &trans  &kp HOME   &kp END   &trans
         &bt BT_CLR      &bt BT_SEL 0     &bt BT_SEL 1     &bt BT_SEL 2     &bt BT_SEL 3     &bt BT_SEL 4     &trans  &trans     &trans    &trans
       >;
