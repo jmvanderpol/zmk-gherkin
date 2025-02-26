@@ -4,8 +4,9 @@ if SHIELD_PIPI_GHERKIN
 config ZMK_KEYBOARD_NAME
     default "PiPi Gherkin"
 
+    config ZEPHYR_HAL_INFINEON_MODULE
+        default y
+
+    config I2C
+        default y
 endif
-
-config I2C
-    default y
-
